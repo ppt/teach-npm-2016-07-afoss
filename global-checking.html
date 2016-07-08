@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Global Checking</title>
+</head>
+
+<body>
+    <script type="text/javascript">
+        var g1 = 1; // g1 cannot delete
+        window.g2 = 2;
+        g3 = 3;
+        function check_global(name) {
+            if (eval("window."+name)) { // all global is in window
+                eval("var buf = "+name);
+                if (eval("delete "+name)) { // check if global var declare by window.name or just assign global-var = something
+                    console.error(name+" is global declare by "+name+" =xxx or window."+name+"=xxx");
+                    eval("window."+name+" = buf");
+                } else {
+                    console.warn(name+" is var declare global");
+                }
+            } else {
+                console.log(name + ' is function local');
+            }
+        };
+        check_global('g1');
+        check_global('g2');
+        check_global('g3');
+        function dummy(){
+            var a;
+            check_global("a");
+            function inner(b) {
+                var c;
+                check_global("b");
+                check_global("c");
+            };
+            inner();
+        };
+        dummy();
+    </script>
+
+</body>
+
+</html>

@@ -90,3 +90,5 @@ jspm_packages
 
 # Application Specific
 *.log
+*.json
+*.txt

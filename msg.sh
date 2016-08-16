@@ -1,7 +1,7 @@
 function portion() {
   # bash expression : $(( expression ))
   # $1 : 1st parameter
-  head -n$(($3+1)) $1 | tail -n+$2
+  head -n$(($3)) $1 | tail -n+$2
 }
 
 # " bash interpret escape char .e.g $1 first parameter

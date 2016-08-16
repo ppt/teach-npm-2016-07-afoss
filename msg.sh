@@ -26,3 +26,15 @@ function rmlineno() {
   # Usage : rmlineno < filename
   cut -d':' -f2-
 }
+
+function statfield() {
+  grep -o -E "\"$1\":[^,]+" $2 | sort | uniq -c | sort -nr
+}
+
+function dumpfield() {
+  grep -E $1 $2
+}
+
+function dump1stline() {
+  grep -E $1 $2 | head -n 1
+}

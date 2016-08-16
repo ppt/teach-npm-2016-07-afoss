@@ -4,6 +4,8 @@ function portion() {
   head -n$(($3+1)) $1 | tail -n+$2
 }
 
+# " bash interpret escape char .e.g $1 first parameter
+# ' not interpret escape char
 function msgstat() {
   # grep -o : output only result, -E : expression
   # cut -c12- : cut first 12 characters
@@ -18,6 +20,7 @@ function getmsg() {
 }
 
 function countline() {
+  # Usage : countline < filename
   wc -l
 }
 
@@ -28,13 +31,18 @@ function rmlineno() {
 }
 
 function statfield() {
+  # Usage : statfield typeOfStateEvent OrderBookStateChangeEvent.json
   grep -o -E "\"$1\":[^,]+" $2 | sort | uniq -c | sort -nr
 }
 
 function dumpfield() {
+  # ' not interpret escape char
+  # Usage : dumpfield '"newState":"Startup"' OrderBookStateChangeEvent.json
   grep -E $1 $2
 }
 
 function dump1stline() {
+  # head -n 1 : list only one line
+  # Usage : dump1stline '"newState":"Startup"' OrderBookStateChangeEvent.json
   grep -E $1 $2 | head -n 1
 }

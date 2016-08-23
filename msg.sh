@@ -1,3 +1,5 @@
+# source msg.sh
+
 function portion() {
   # bash expression : $(( expression ))
   # $1 : 1st parameter

@@ -92,3 +92,4 @@ jspm_packages
 *.log
 *.json
 *.txt
+data/
